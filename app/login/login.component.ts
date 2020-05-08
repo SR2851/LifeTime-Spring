@@ -12,10 +12,16 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
   user: Login = new Login();
   userLoggedIn: User = new User();
+  listUser: User[]=[];
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-
+this.userService.getAll().subscribe(
+  data=>{
+    this.listUser=data;
+  }
+)
   }
   login() {
     this.userService.login(this.user).subscribe(
@@ -27,15 +33,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("prenom", this.userLoggedIn.prenomUser);
 
 
-          if (this.userLoggedIn.role.nomRole == "Client") {
-            localStorage.setItem("role", "Client");
-          }
-          else if (this.userLoggedIn.role.nomRole == "Employé") {
-            localStorage.setItem("role", "Employé");
-          }
-          else if (this.userLoggedIn.role.nomRole == "Gérant") {
-            localStorage.setItem("role", "Gérant");
-          }
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -44,21 +41,9 @@ export class LoginComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           }).then(() => {
-            if (this.userLoggedIn.role.nomRole == "Client") {
-              window.location.href = "http://localhost:4200/homepageClient/"+data.idUser;
-            }
-            else if (this.userLoggedIn.role.nomRole == "Employé") {
-              window.location.href = "http://localhost:4200/homepageEmploye/"+data.idUser;
-            }
-            else if (this.userLoggedIn.role.nomRole == "Gérant") {
-              window.location.href = "http://localhost:4200/homepageEmploye/"+data.idUser;
-            }
-            else if (this.userLoggedIn.role.nomRole == "Cuisinier") {
-              window.location.href = "http://localhost:4200/homepageEmploye/"+data.idUser;
-            }
-            else {
-              window.location.href = "http://localhost:4200/login"
-            }
+            
+              window.location.href = "http://localhost:4200/homepage/"+data.idUser;
+           
           })
         }
         else  {

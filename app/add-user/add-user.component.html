@@ -1,14 +1,51 @@
 <div  class="container-fuild">
     <div class="row">
-    <div class="col-lg-3" style="border-right: solid; border-right-color: #a52a2a; border-width: 5px; border-radius: 15pt;">
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    </div>
-    <div class="col-lg-6">
-        
-    </div>
-    <div class="col-lg-3" style="border-left: solid; border-left-color: #a52a2a; border-width: 5px; border-radius: 15pt;">
-        
-    </div>
+            <div id="addUser" >
+
+        <form style="margin-top: 10px;">
+            <h1 style="text-align: center;">Ajouter un Utilisateur:</h1>
+            <div class="form-group">
+                <label><h5>Nom</h5></label><br>
+                <input type="text" name="nomUser" class="form-control" id="nomUser" [(ngModel)]="newUser.nomUser"
+                    placeholder="Nom de l'utilisateur"><br>
+                <label><h5>Prénom</h5></label><br>
+                <input type="text" name="prenomUser" class="form-control" id="prenomUser"
+                    [(ngModel)]="newUser.prenomUser" placeholder="Prénom de l'utilisateur"><br>
+                <label><h5>Identifiant:</h5></label><br>
+                <input type="text" name="identifiant" class="form-control" id="identifiant"
+                    [(ngModel)]="newUser.identifiant" placeholder="identifiant de l'utilisateur"><br>
+                    <label><h5>email:</h5></label><br>
+                <input type="text" name="email" class="form-control" id="email"
+                    [(ngModel)]="newUser.email" ><br>
+                <label><h5>Mot de passe:</h5></label><br>
+                <input type="password" name="password" class="form-control" id="password"
+                    [(ngModel)]="newUser.password" placeholder="saisissez un mot de passe"><br>
+                <label><h5>Tel:</h5></label><br>
+                <input type="text" name="telUser" class="form-control" id="telUser" [(ngModel)]="newUser.telUser"
+                    placeholder="téléphone de l'utilisateur"><br>
+                    <label><h5>Photo:</h5></label><br>
+                    <input  name="image"   type="file" #imageInput accept="image/*" (change)="fileChangeEvent(imageInput, $event)" />
+
+                        <image-cropper style="max-width:400px;height: auto;"
+                            [imageChangedEvent]="imageChangedEvent"
+                            [maintainAspectRatio]="true"
+                            cropperMaxHeight="200px"
+                            [aspectRatio]="1/1"
+                            format="png"
+                            roundCropper=true
+                            resizeToHeight="300"
+                            (imageCropped)="imageCropped(imageInput, $event)"
+                            (imageLoaded)="imageLoaded()"
+                            (cropperReady)="cropperReady()"
+                            (loadImageFailed)="loadImageFailed()"
+                        ></image-cropper>
+                        
+                        <img  style="height: 100pt; width: auto; border-radius: 100%;" [src]="previous" /><br>
+                
+                    
+                <input type="submit" style="margin-top: 5px;" value="Ajouter" class="btn btn-dark" (click)="addUser(newUser.idUser, newUser)">
+            </div>
+        </form>    </div>
     </div>
     </div>
     

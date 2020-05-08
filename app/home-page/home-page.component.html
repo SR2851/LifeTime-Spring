@@ -1,14 +1,65 @@
-<div  class="container-fuild">
+<div class="container">
     <div class="row">
-    <div class="col-lg-3" style="border-right: solid; border-right-color: #a52a2a; border-width: 5px; border-radius: 15pt;">
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="col-lg-3" id="colLeft">
+
+            <div id="userLog">
+                <div>
+                    <img id="profilPic" src="/assets/profil/{{user.photo}}">
+                </div>
+                <h5>{{user.identifiant}}</h5><br>
+            </div>
+            <h6>Suggestions:</h6>
+            <div id="listUsers" *ngFor="let unUser of listUsers">
+                <div>
+                    <img id="picUsers" src="/assets/profil/{{unUser.photo}}"><a>{{unUser.identifiant}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6" style="margin-top: 5pt;">
+            <div class="card">
+                <h5 class="card-header">Créer une publication</h5>
+                <div class="card-body">
+
+                    <form id="textOnly" style="display: block;">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="addPhoto()"> Photo</button>
+                    </form>
+                    <form id="photo" style="display: none;">
+                        <input name="image" type="file" #imageInput accept="image/*"
+                            (change)="fileChangeEvent(imageInput, $event)" />
+
+                        <image-cropper style="max-width:400px;height: auto;" [imageChangedEvent]="imageChangedEvent"
+                            [maintainAspectRatio]="true" cropperMaxHeight="200px" [aspectRatio]="4/3" format="png"
+                            resizeToHeight="300" (imageCropped)="imageCropped(imageInput, $event)"
+                            (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+                            (loadImageFailed)="loadImageFailed()"></image-cropper>
+
+                        <br>
+                        <label>
+                            <h6>Description:</h6>
+                        </label>
+                        <textarea type="text" name="identifiant" class="form-control" id="identification"
+                            [(ngModel)]="post.text"></textarea>
+                        <input type="submit" value="Publier" class="btn btn-dark btn-sm" style="margin-top: 5pt;"
+                            (click)="addPostP(post.idPost, post)">
+                    </form>
+
+                </div>
+                
+            </div>
+            <div *ngFor="let unPost of listPosts">
+                <div class="card" >
+                    <h5 class="card-header"><img id="picUsers" src="/assets/profil/{{unPost.user.photo}}"><a>{{unPost.user.identifiant}}</a></h5>
+                    <img class="card-img-top" src="/assets/post/{{unPost.photo}}" alt="Card image cap">
+                    <div class="card-body">
+                      <p class="card-text">{{unPost.text}}</p>
+                    </div>
+                    <a id="datePost">{{unPost.datePost | date: " dd/MM/yyyy ' - ' HH'h'mm"}}</a>
+                  </div>
+            </div>
+        </div>
+        <div class="col-lg-3"
+            style="background-color:whitesmoke;border-left-style: solid;border-right-style: solid; border-color: #a52a2a; border-width: 5px; border-top-left-radius: 15pt;">
+
+        </div>
     </div>
-    <div class="col-lg-6">
-        
-    </div>
-    <div class="col-lg-3" style="border-left: solid; border-left-color: #a52a2a; border-width: 5px; border-radius: 15pt;">
-        
-    </div>
-    </div>
-    </div>
-    
+</div>
