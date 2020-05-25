@@ -8,6 +8,7 @@
     border-radius: 100pt;
     border-style: solid;
     border-color: brown;
+    cursor: pointer;
 }
 
 #userLog{
@@ -24,6 +25,7 @@
     border-color: #a52a2a; 
     border-width: 5px; 
     border-top-right-radius: 15pt;
+    position: sticky;
 }
 
 #listUsers{
@@ -42,6 +44,7 @@
     border-radius: 100pt;
     border-style: solid;
     border-color: brown;
+    cursor: pointer;
 }
 
 .container{
@@ -58,15 +61,30 @@
     color: whitesmoke;
     
 }
+.card-body{
+    border-top-style:solid ;
+    border-top-color: gainsboro;
+    border-top-width: 1pt;
+    vertical-align: middle;
+}
 #datePost{
     display: block;
-    width: fit-content;
+    width: max-content;
     background-color: #cc3300;
     font-size: 10pt;
     margin: auto;
-    padding:1pt;
+    
     color: whitesmoke;
     text-align: right;
     border-top-left-radius: 5pt;
     border-top-right-radius: 5pt;
+}
+.votreCom{
+    width: 330pt;
+    height: 27pt;
+    border-style: solid;
+    border-radius: 100pt;
+    border-width: 1pt;
+    border-color: gainsboro;
+    padding-left: 5pt;
 }

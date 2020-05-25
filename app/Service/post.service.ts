@@ -11,6 +11,9 @@ export class PostService {
   getAll(){
     return this.http.get<Post[]>('http://localhost:8080/post/all').pipe()
   }
+  getAllByUser(idUser:number){
+    return this.http.get<Post[]>('http://localhost:8080/post/all/'+idUser).pipe()
+  }
   addPost(Post : Post){
     return this.http.post<Post>('http://localhost:8080/post/create', Post).pipe()
     //envoie moi la requette post sur postmann avec Post comme corps de reuette

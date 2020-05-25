@@ -1,0 +1,90 @@
+#profilPic{
+    display:block; 
+    margin: auto; 
+    margin-top: 10pt; 
+    margin-bottom: 10pt;
+    width: 150pt; 
+    height: auto; 
+    border-radius: 100pt;
+    border-style: solid;
+    border-color: brown;
+    cursor: pointer;
+}
+
+#userLog{
+    border-bottom-style: solid;
+    border-bottom-color: #a52a2a;
+    margin-bottom: 10pt;
+    text-align: center;
+}
+
+#colLeft{
+    background-color:whitesmoke;
+    border-left-style: solid;
+    border-right-style: solid; 
+    border-color: #a52a2a; 
+    border-width: 5px; 
+    border-top-right-radius: 15pt;
+    position: sticky;
+}
+
+#listUsers{
+    padding-top: 5pt;
+    display: block;
+    margin: auto;
+    text-align: left;
+    font-size: 14pt;
+}
+#picUsers{ 
+    margin-top: 1pt; 
+    margin-bottom: 1pt;
+    width: 30pt; 
+    height: auto; 
+    margin-right:10pt;
+    border-radius: 100pt;
+    border-style: solid;
+    border-color: brown;
+    cursor: pointer;
+}
+
+.container{
+    background-color: whitesmoke;
+}
+
+.card{
+    border-style: solid;
+    border-color: brown;
+    margin-top: 4pt;
+}
+.card-header{
+    background-color: #cc3300;
+    color: whitesmoke;
+    
+}
+.card-body{
+    border-top-style:solid ;
+    border-top-color: gainsboro;
+    border-top-width: 1pt;
+    vertical-align: middle;
+}
+#datePost{
+    display: block;
+    width: max-content;
+    background-color: #cc3300;
+    font-size: 10pt;
+    margin: auto;
+    
+    color: whitesmoke;
+    text-align: right;
+    border-top-left-radius: 5pt;
+    border-top-right-radius: 5pt;
+}
+.votreCom{
+    width: 330pt;
+    height: 27pt;
+    border-style: solid;
+    border-radius: 100pt;
+    border-width: 1pt;
+    border-color: gainsboro;
+    padding-left: 5pt;
+}

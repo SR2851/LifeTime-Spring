@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Commentaire } from '../Model/Commentaire';
+import { Post } from '../Model/Post';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +10,21 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(){
-    return this.http.get<Comment[]>('http://localhost:8080/comment/all').pipe()
+  getAll(idPost:number){
+    return this.http.get<Commentaire[]>('http://localhost:8080/comment/all/'+ idPost).pipe()
   }
-  addComment(Comment : Comment){
-    return this.http.post<Comment>('http://localhost:8080/comment/create', Comment).pipe()
+  
+  addComment(Comment : Commentaire){
+    return this.http.post<Commentaire>('http://localhost:8080/comment/create', Comment).pipe()
     
   }
   deleteComment(idComment : number){
-    return this.http.delete<Comment>('http://localhost:8080/comment/delete/'+idComment).pipe()
+    return this.http.delete<Commentaire>('http://localhost:8080/comment/delete/'+idComment).pipe()
   }
   updateComment(idComment : number, Comment: Comment){
-    return this.http.put<Comment>('http://localhost:8080/comment/update/'+idComment, Comment).pipe()
+    return this.http.put<Commentaire>('http://localhost:8080/comment/update/'+idComment, Comment).pipe()
   }
   getById(idComment: number){
-return this.http.get<Comment>('http://localhost:8080/comment/findById/'+idComment).pipe()
+return this.http.get<Commentaire>('http://localhost:8080/comment/findById/'+idComment).pipe()
   }
 }

@@ -17,11 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-this.userService.getAll().subscribe(
-  data=>{
-    this.listUser=data;
-  }
-)
+
   }
   login() {
     this.userService.login(this.user).subscribe(

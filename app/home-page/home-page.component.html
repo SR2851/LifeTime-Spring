@@ -1,17 +1,20 @@
+<app-header></app-header>
 <div class="container">
     <div class="row">
         <div class="col-lg-3" id="colLeft">
 
             <div id="userLog">
                 <div>
-                    <img id="profilPic" src="/assets/profil/{{user.photo}}">
+                    <img id="profilPic" (click)="monProfil()" src="/assets/profil/{{user.photo}}">
                 </div>
-                <h5>{{user.identifiant}}</h5><br>
+                <button class="btn btn-link" style="color: black;" (click)="monProfil()">
+                    <h5>{{user.identifiant}}</h5>
+                </button><br>
             </div>
             <h6>Suggestions:</h6>
             <div id="listUsers" *ngFor="let unUser of listUsers">
-                <div>
-                    <img id="picUsers" src="/assets/profil/{{unUser.photo}}"><a>{{unUser.identifiant}}</a>
+                <div (click)="sonProfil(unUser.idUser)">
+                    <img id="picUsers"  src="/assets/profil/{{unUser.photo}}"><button class="btn btn-link" style="color: black; font-size: 14pt;" >{{unUser.identifiant}}</button>
                 </div>
             </div>
         </div>
@@ -44,17 +47,49 @@
                     </form>
 
                 </div>
-                
+
             </div>
             <div *ngFor="let unPost of listPosts">
-                <div class="card" >
-                    <h5 class="card-header"><img id="picUsers" src="/assets/profil/{{unPost.user.photo}}"><a>{{unPost.user.identifiant}}</a></h5>
+                <div class="card">
+                    <h5 class="card-header"><img id="picUsers"
+                            src="/assets/profil/{{unPost.user.photo}}"><a>{{unPost.user.identifiant}}</a></h5>
                     <img class="card-img-top" src="/assets/post/{{unPost.photo}}" alt="Card image cap">
                     <div class="card-body">
-                      <p class="card-text">{{unPost.text}}</p>
+                        <p class="card-text">{{unPost.text}}</p>
+                    </div>
+                    <div class="card-body">
+                        <a class="com" >
+                            <h6 (click)="ShowComment(unPost.idPost)">Voir les commentaires</h6>
+                        </a>
+                        <form>
+                            <img id="picUsers" src="/assets/profil/{{user.photo}}">
+                            <input type="text"
+                                name="comment" class="votreCom"  [(ngModel)]="comment.texte"
+                                placeholder="Votre commentaire...">
+                                <button class="btn btn-dark btn-sm" (click)="addComment(unPost.idPost,unPost)">Envoyer</button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <table id="commentaires" style="text-align: left; display: none;">
+                            
+
+                            <tr *ngFor="let unComment of listComments">
+
+                                <th scope="row" style="vertical-align: middle;"><img id="picUsers" src="/assets/profil/{{unComment.user1.photo}}"></th>
+
+                                <td style="vertical-align: middle; width:20pt;">{{unComment.user1.identifiant}}
+                                </td>
+                                <td style="vertical-align: middle; width: 200pt;padding-left: 20pt;">{{unComment.texte}}
+                                </td>
+                                
+
+
+                            </tr>
+
+                        </table>
                     </div>
                     <a id="datePost">{{unPost.datePost | date: " dd/MM/yyyy ' - ' HH'h'mm"}}</a>
-                  </div>
+                </div>
             </div>
         </div>
         <div class="col-lg-3"

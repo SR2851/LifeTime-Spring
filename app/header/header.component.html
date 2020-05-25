@@ -1,6 +1,38 @@
-<nav class="navbar navbar-dark sticky-top " style="background-color: #a52a2a; cursor: pointer; background: linear-gradient(to bottom, #cc3300 90%, #800000 100%);">
-    <a class="navbar-brand" href="#">
-      <img src="/assets/LT.png" style="border-radius: 100pt; width: 50px; height: auto; float: inline-start; ">
-      LifeTime
-    </a>
-  </nav>
+<nav class="navbar navbar-expand-lg  navbar-dark sticky-top" style="background-color: #a52a2a; cursor: pointer;">
+  <img (click)="homePage()" src="/assets/LT.png" style="border-radius: 100pt; width: 50px; height: auto; float: inline-start; ">
+  <a (click)="homePage()" class="navbar-brand" style="padding-left: 5pt;">  LifeTime</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+
+      <li class="nav-item dropdown" >
+        
+        
+      </li>
+      <li class="nav-item dropdown" >
+        
+        
+      </li>
+      <li class="nav-item dropdown" >
+        
+        
+      </li>
+
+    </ul>
+
+  </div>
+  <ul class="navbar-nav mr-auto" >
+    <li class="nav-item dropdown" style="float: inline-start;">
+      <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" style="color: white; ">{{user.prenomUser}} {{user.nomUser}} <img
+          src="/assets/profil/{{user.photo}}" style="height: 40px; width: auto;  border-radius: 100%; ">
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" (click)="profile()">Profil</a>
+        <a class="dropdown-item" (click)="logOut()">Déconnexion</a>
+       
+      </div>
+    </li>
+  </ul>
+</nav>
