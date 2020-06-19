@@ -12,83 +12,90 @@
                 </button><br>
             </div>
             <h6>Suggestions:</h6>
-            <div id="listUsers" *ngFor="let unUser of listUsers">
-                <div (click)="sonProfil(unUser.idUser)">
-                    <img id="picUsers"  src="/assets/profil/{{unUser.photo}}"><button class="btn btn-link" style="color: black; font-size: 14pt;" >{{unUser.identifiant}}</button>
+            <div id="madiv">
+                <div id="listUsers" *ngFor="let unUser of listUsers">
+                    <div (click)="sonProfil(unUser.idUser)">
+                        <img id="picUsers" src="/assets/profil/{{unUser.photo}}"><button class="btn btn-link"
+                            style="color: black; font-size: 14pt;">{{unUser.identifiant}}</button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-6" style="margin-top: 5pt;">
-            <div class="card">
-                <h5 class="card-header">Créer une publication</h5>
-                <div class="card-body">
+            <div class="filCentral">
+                <div class="card">
+                    <h5 class="card-header">Créer une publication</h5>
+                    <div class="card-body">
 
-                    <form id="textOnly" style="display: block;">
-                        <button type="button" class="btn btn-danger btn-sm" (click)="addPhoto()"> Photo</button>
-                    </form>
-                    <form id="photo" style="display: none;">
-                        <input name="image" type="file" #imageInput accept="image/*"
-                            (change)="fileChangeEvent(imageInput, $event)" />
+                        <form id="textOnly" style="display: block;">
+                            <button type="button" class="btn btn-danger btn-sm" (click)="addPhoto()"> Photo</button>
+                        </form>
+                        <form id="photo" style="display: none;">
+                            <input name="image" type="file" #imageInput accept="image/*"
+                                (change)="fileChangeEvent(imageInput, $event)" />
 
-                        <image-cropper style="max-width:400px;height: auto;" [imageChangedEvent]="imageChangedEvent"
-                            [maintainAspectRatio]="true" cropperMaxHeight="200px" [aspectRatio]="4/3" format="png"
-                            resizeToHeight="300" (imageCropped)="imageCropped(imageInput, $event)"
-                            (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
-                            (loadImageFailed)="loadImageFailed()"></image-cropper>
+                            <image-cropper style="max-width:400px;height: auto;" [imageChangedEvent]="imageChangedEvent"
+                                [maintainAspectRatio]="true" cropperMaxHeight="200px" [aspectRatio]="4/3" format="png"
+                                resizeToHeight="300" (imageCropped)="imageCropped(imageInput, $event)"
+                                (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+                                (loadImageFailed)="loadImageFailed()"></image-cropper>
 
-                        <br>
-                        <label>
-                            <h6>Description:</h6>
-                        </label>
-                        <textarea type="text" name="identifiant" class="form-control" id="identification"
-                            [(ngModel)]="post.text"></textarea>
-                        <input type="submit" value="Publier" class="btn btn-dark btn-sm" style="margin-top: 5pt;"
-                            (click)="addPostP(post.idPost, post)">
-                    </form>
+                            <br>
+                            <label>
+                                <h6>Description:</h6>
+                            </label>
+                            <textarea type="text" name="identifiant" class="form-control" id="identification"
+                                [(ngModel)]="post.text"></textarea>
+                            <input type="submit" value="Publier" class="btn btn-dark btn-sm" style="margin-top: 5pt;"
+                                (click)="addPostP(post.idPost, post)">
+                        </form>
+
+                    </div>
 
                 </div>
+                <div *ngFor="let unPost of listPosts">
+                    <div class="card">
+                        <h5 class="card-header"><img id="picUsers"
+                                src="/assets/profil/{{unPost.user.photo}}"><a>{{unPost.user.identifiant}}</a></h5>
+                        <img class="card-img-top" src="/assets/post/{{unPost.photo}}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">{{unPost.text}}</p>
+                        </div>
+                        <div class="card-body">
+                            <a class="com">
+                                <h6 (click)="ShowComment(unPost.idPost)">Voir les commentaires</h6>
+                            </a>
+                            <form>
+                                <img id="picUsers" src="/assets/profil/{{user.photo}}">
+                                <input type="text" name="comment" class="votreCom" [(ngModel)]="comment.texte"
+                                    placeholder="Votre commentaire...">
+                                <button class="btn btn-dark btn-sm"
+                                    (click)="addComment(unPost.idPost,unPost)">Envoyer</button>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <table id="commentaires" style="text-align: left; display: none;">
 
-            </div>
-            <div *ngFor="let unPost of listPosts">
-                <div class="card">
-                    <h5 class="card-header"><img id="picUsers"
-                            src="/assets/profil/{{unPost.user.photo}}"><a>{{unPost.user.identifiant}}</a></h5>
-                    <img class="card-img-top" src="/assets/post/{{unPost.photo}}" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">{{unPost.text}}</p>
+
+                                <tr *ngFor="let unComment of listComments">
+
+                                    <th scope="row" style="vertical-align: middle;"><img id="picUsers"
+                                            src="/assets/profil/{{unComment.user1.photo}}"></th>
+
+                                    <td style="vertical-align: middle; width:20pt;">{{unComment.user1.identifiant}}
+                                    </td>
+                                    <td style="vertical-align: middle; width: 200pt;padding-left: 20pt;">
+                                        {{unComment.texte}}
+                                    </td>
+
+
+
+                                </tr>
+
+                            </table>
+                        </div>
+                        <a id="datePost">{{unPost.datePost | date: " dd/MM/yyyy ' - ' HH'h'mm"}}</a>
                     </div>
-                    <div class="card-body">
-                        <a class="com" >
-                            <h6 (click)="ShowComment(unPost.idPost)">Voir les commentaires</h6>
-                        </a>
-                        <form>
-                            <img id="picUsers" src="/assets/profil/{{user.photo}}">
-                            <input type="text"
-                                name="comment" class="votreCom"  [(ngModel)]="comment.texte"
-                                placeholder="Votre commentaire...">
-                                <button class="btn btn-dark btn-sm" (click)="addComment(unPost.idPost,unPost)">Envoyer</button>
-                        </form>
-                    </div>
-                    <div class="card-body">
-                        <table id="commentaires" style="text-align: left; display: none;">
-                            
-
-                            <tr *ngFor="let unComment of listComments">
-
-                                <th scope="row" style="vertical-align: middle;"><img id="picUsers" src="/assets/profil/{{unComment.user1.photo}}"></th>
-
-                                <td style="vertical-align: middle; width:20pt;">{{unComment.user1.identifiant}}
-                                </td>
-                                <td style="vertical-align: middle; width: 200pt;padding-left: 20pt;">{{unComment.texte}}
-                                </td>
-                                
-
-
-                            </tr>
-
-                        </table>
-                    </div>
-                    <a id="datePost">{{unPost.datePost | date: " dd/MM/yyyy ' - ' HH'h'mm"}}</a>
                 </div>
             </div>
         </div>

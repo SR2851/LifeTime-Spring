@@ -34,7 +34,19 @@
     margin: auto;
     text-align: left;
     font-size: 14pt;
+    
 }
+
+#madiv{
+    height:300pt ;
+    overflow:auto;
+}
+
+.filCentral{
+    height:480pt ;
+    overflow:auto;
+}
+
 #picUsers{ 
     margin-top: 1pt; 
     margin-bottom: 1pt;
